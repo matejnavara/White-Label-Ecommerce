@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom';
 
+import CollectionItem from '../collection-item/collection-item'
 import './collection-preview.styles.scss';
 
 const CollectionPreview = ({ title, items, linkUrl, history, match }) => {
@@ -12,7 +13,7 @@ const CollectionPreview = ({ title, items, linkUrl, history, match }) => {
               {items
                 .filter((item, index) => index < 4)
                 .map(item => (
-                  <div key={item.id}>{item.name}</div>
+                  <CollectionItem key={item.id} item={item} />
               ))}
             </div>
         </div>
