@@ -22,7 +22,6 @@ const Header = () => {
           LOGIN
         </Link>
       </div>
-      
     </div>
   )
 };
