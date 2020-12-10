@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import FormInput from '../form-input/form-input'
 import Button from '../custom-button/custom-button'
-import { auth, createUserProfileDocument, createUser } from '../../firebase/firebase.utils'
+import { auth, createUserProfileDocument } from '../../firebase/firebase.utils'
 
 import './sign-up.styles.scss'
 
@@ -61,9 +61,6 @@ export class SignUp extends Component {
           <div className="buttons">
             <Button type="submit">
               Sign Up
-            </Button>
-            <Button onClick={() => null} isGoogleSignIn>
-              Sign Up with Google
             </Button>
           </div>
         </form>
