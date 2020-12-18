@@ -4,4 +4,5 @@ export const UserActionTypes = {
 
 export const CartActionTypes = {
   TOGGLE_CART_VISIBLE: 'TOGGLE_CART_VISIBLE',
+  ADD_CART_ITEM: 'ADD_CART_ITEM',
 }
