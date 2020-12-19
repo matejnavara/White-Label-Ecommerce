@@ -17,7 +17,7 @@ class ShopPage extends Component {
         return (
           <div className="shop-page">
             {collections.map(({ id, title, routeName, items }) => (
-              <CollectionPreview id={id} title={title} items={items} />
+              <CollectionPreview id={id} title={title} items={items} linkUrl={routeName} />
             ))}
           </div>
         )

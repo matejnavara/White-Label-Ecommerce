@@ -7,8 +7,8 @@ import './collection-preview.styles.scss';
 
 const CollectionPreview = ({ title, items, linkUrl, history, match }) => {
     return (
-        <div className={`collection-preview`} onClick={() => history.push(`${match.url}${linkUrl}`)}>
-            <h1 className="title">{ title }</h1>
+        <div className={`collection-preview`}>
+            <h1 className="title" onClick={() => history.push(`${match.url}/${linkUrl}`)}>{ title }</h1>
             <div className="preview">
               {items
                 .filter((item, index) => index < 4)
