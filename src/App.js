@@ -10,7 +10,8 @@ import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
 import HomePage from './pages/homepage/homepage';
 import ShopPage from './pages/shop/shop';
-import LoginPage from './pages/login/login'
+import CheckoutPage from './pages/checkout/checkout';
+import LoginPage from './pages/login/login';
 
 class App extends React.Component {
   unsubscribeFromAuth = null;
@@ -44,6 +45,7 @@ class App extends React.Component {
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/shop" component={ShopPage} />
+          <Route exact path="/checkout" component={CheckoutPage} />
           <Route path="/login" render={() => this.props.currentUser ? (<Redirect to='.' />) : (<LoginPage/>)} />
         </Switch>
       </div>
