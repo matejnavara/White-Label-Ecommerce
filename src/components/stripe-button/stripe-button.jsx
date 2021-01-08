@@ -6,7 +6,9 @@ const StripeButton = ({ price }) => {
   const publishableKey = 'pk_test_51I7HQCBeUWAxItOP3Vz3G1H5Pu82DLPzufLxy3tS7bULueGPS1O6phVIBz5VlMlldjbfMBGQbT7bAx1o329l2BFy00x7vviP4a';
 
   const onToken = token => {
-    console.log("🚀 ~ file: stripe-button.jsx ~ line 9 ~ StripeButton ~ token", token)
+    if (process.env.NODE_ENV === 'development') {
+      console.log("🚀 ~ file: stripe-button.jsx ~ line 9 ~ StripeButton ~ token", token);
+    }
     alert('Payment Successful');
   }
 
