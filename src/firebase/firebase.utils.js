@@ -1,6 +1,6 @@
-import firebase from 'firebase/app';
-import 'firebase/firestore';
-import 'firebase/auth';
+import firebase from "firebase/app";
+import "firebase/firestore";
+import "firebase/auth";
 
 const config = {
   apiKey: "AIzaSyAzmKbkmVY_8hZ-x4NVP_mFUKhHARYt-9A",
@@ -8,7 +8,7 @@ const config = {
   projectId: "white-label-ecommerce",
   storageBucket: "white-label-ecommerce.appspot.com",
   messagingSenderId: "133612210658",
-  appId: "1:133612210658:web:2323b2d20db7c842d451bb"
+  appId: "1:133612210658:web:2323b2d20db7c842d451bb",
 };
 
 export const createUserProfileDocument = async (userAuth, additionalData) => {
@@ -17,7 +17,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   const userRef = firestore.doc(`users/${userAuth.uid}`);
   const snapshot = await userRef.get();
 
-  if(!snapshot.exists) {
+  if (!snapshot.exists) {
     const { displayName, email } = userAuth;
 
     try {
@@ -26,21 +26,33 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
         email,
         createdAt: new Date(),
         ...additionalData,
-      })
+      });
     } catch (error) {
-      console.log("Error creating user", error)
+      console.log("Error creating user", error);
     }
   }
   return userRef;
-}
+};
 
 firebase.initializeApp(config);
+
+export const addCollectionAndDocuments = async (collectionKey, docsToAdd) => {
+  const collectionRef = firestore.collection(collectionKey);
+
+  const batch = firestore.batch();
+  docsToAdd.forEach((doc) => {
+    const newDocRef = collectionRef.doc();
+    batch.set(newDocRef, doc);
+  });
+
+  return await batch.commit();
+};
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
 const provider = new firebase.auth.GoogleAuthProvider();
-provider.setCustomParameters({ prompt: 'select_account' });
+provider.setCustomParameters({ prompt: "select_account" });
 
 export const signInWithGoogle = () => auth.signInWithPopup(provider);
 
