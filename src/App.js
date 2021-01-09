@@ -8,10 +8,10 @@ import { selectCurrentUser } from './redux/selectors/user';
 import Header from './components/header/header';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
-import HomePage from './pages/homepage/homepage';
-import ShopPage from './pages/shop/shop';
-import CheckoutPage from './pages/checkout/checkout';
-import LoginPage from './pages/login/login';
+import HomePage from './pages/homepage';
+import ShopPage from './pages/shop';
+import CheckoutPage from './pages/checkout';
+import LoginPage from './pages/login';
 
 class App extends React.Component {
   unsubscribeFromAuth = null;
