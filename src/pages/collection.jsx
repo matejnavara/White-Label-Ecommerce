@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 
-import CollectionItem from "../components/collection-item/collection-item";
+import CollectionItem from "../components/collection-item";
 import { selectCollection } from "../redux/selectors/shop";
 
 const CollectionContainer = styled.div`

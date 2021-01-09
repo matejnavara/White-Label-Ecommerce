@@ -4,7 +4,7 @@ import { createStructuredSelector } from "reselect";
 import styled from "styled-components";
 
 import { selectCartItems, selectCartTotal } from "../redux/selectors/cart";
-import CheckoutItem from "../components/checkout-item/checkout-item";
+import CheckoutItem from "../components/checkout-item";
 import StripeButton from "../components/stripe-button/stripe-button";
 
 const CheckoutContainer = styled.div`

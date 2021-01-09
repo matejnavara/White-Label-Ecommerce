@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import Directory from "../components/directory/directory";
+import Directory from "../components/directory";
 
 const HomePageContainer = styled.div`
   display: flex;
