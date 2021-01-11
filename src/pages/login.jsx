@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import SignIn from "../components/sign-in";
-import SignUp from "../components/sign-up/sign-up";
+import SignUp from "../components/sign-up";
 
 const LoginContainer = styled.div`
   max-width: 1600px;

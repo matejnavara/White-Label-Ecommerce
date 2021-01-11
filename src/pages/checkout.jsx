@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 import { selectCartItems, selectCartTotal } from "../redux/selectors/cart";
 import CheckoutItem from "../components/checkout-item";
-import StripeButton from "../components/stripe-button/stripe-button";
+import StripeButton from "../components/stripe-button";
 
 const CheckoutContainer = styled.div`
   width: 55%;
