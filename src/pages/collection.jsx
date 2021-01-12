@@ -2,8 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 
-import CollectionItem from "../components/collection-item";
 import { selectCollection } from "../redux/selectors/shop";
+import CollectionItem from "../components/collection-item";
+import WithCollectionsLoadingContainer from "../components/with-collections-loading";
 
 const CollectionContainer = styled.div`
   display: flex;
@@ -36,4 +37,6 @@ const mapStateToProps = (state, ownProps) => ({
   collection: selectCollection(ownProps.match.params.collectionId)(state),
 });
 
-export default connect(mapStateToProps)(CollectionPage);
+export default WithCollectionsLoadingContainer(
+  connect(mapStateToProps)(CollectionPage)
+);

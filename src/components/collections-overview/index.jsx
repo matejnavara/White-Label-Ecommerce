@@ -6,13 +6,14 @@ import CollectionPreview from "../collection-preview";
 import { selectCollectionsForPreview } from "../../redux/selectors/shop";
 
 import { CollectionsOverviewContainer } from "./styles";
+import WithCollectionsLoadingContainer from "../with-collections-loading";
 
 const CollectionsOverview = ({ collections }) => {
   return (
     <CollectionsOverviewContainer>
       {collections.map(({ id, title, routeName, items }) => (
         <CollectionPreview
-          id={id}
+          key={id}
           title={title}
           items={items}
           linkUrl={routeName}
@@ -26,4 +27,6 @@ const mapStateToProps = createStructuredSelector({
   collections: selectCollectionsForPreview,
 });
 
-export default connect(mapStateToProps)(CollectionsOverview);
+export default WithCollectionsLoadingContainer(
+  connect(mapStateToProps)(CollectionsOverview)
+);
