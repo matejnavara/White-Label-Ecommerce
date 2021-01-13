@@ -22,3 +22,16 @@ export const signinFailure = (error) => ({
   type: UserActionTypes.SIGNIN_FAILURE,
   payload: error,
 });
+
+export const signoutRequest = () => ({
+  type: UserActionTypes.SIGNOUT_REQUEST,
+});
+
+export const signoutSuccess = () => ({
+  type: UserActionTypes.SIGNOUT_SUCCESS,
+});
+
+export const signoutFailure = (error) => ({
+  type: UserActionTypes.SIGNOUT_FAILURE,
+  payload: error,
+});

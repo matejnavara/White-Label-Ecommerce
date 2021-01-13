@@ -2,7 +2,12 @@ import { takeLatest, put, all, call } from "redux-saga/effects";
 
 import { UserActionTypes } from "../actionTypes";
 
-import { signinSuccess, signinFailure } from "../actions/user";
+import {
+  signinSuccess,
+  signinFailure,
+  signoutSuccess,
+  signoutFailure,
+} from "../actions/user";
 
 import {
   auth,
@@ -40,6 +45,15 @@ function* signin(signinFunction) {
   }
 }
 
+function* signout() {
+  try {
+    yield auth.signOut();
+    yield put(signoutSuccess());
+  } catch (error) {
+    yield put(signoutFailure(error));
+  }
+}
+
 function* signinWithGoogle() {
   yield signin(auth.signInWithPopup(googleProvider));
 }
@@ -47,6 +61,8 @@ function* signinWithGoogle() {
 function* signinWithEmail({ payload: { email, password } }) {
   yield signin(auth.signInWithEmailAndPassword(email, password));
 }
+
+// EVENTS
 
 function* onUserCheck() {
   yield takeLatest(UserActionTypes.CHECK_USER_SESSION, isUserAuthenticated);
@@ -60,10 +76,15 @@ function* onEmailSigninRequest() {
   yield takeLatest(UserActionTypes.EMAIL_SIGNIN_REQUEST, signinWithEmail);
 }
 
+function* onSignoutRequest() {
+  yield takeLatest(UserActionTypes.SIGNOUT_REQUEST, signout);
+}
+
 export function* userSagas() {
   yield all([
     call(onUserCheck),
     call(onGoogleSignInRequest),
     call(onEmailSigninRequest),
+    call(onSignoutRequest),
   ]);
 }
