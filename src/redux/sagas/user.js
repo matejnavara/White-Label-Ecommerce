@@ -18,10 +18,10 @@ import {
   getCurrentUser,
 } from "../../firebase/firebase.utils";
 
-function* getUserSnapshotAndSignin(user, ...otherProps) {
+function* getUserSnapshotAndSignin(user, ...additionalData) {
   try {
     const userRef = yield call(createUserProfileDocument, user, {
-      ...otherProps,
+      ...additionalData,
     });
     const userSnapshot = yield userRef.get();
     yield put(signinSuccess({ id: userSnapshot.id, ...userSnapshot.data() }));
@@ -32,7 +32,7 @@ function* getUserSnapshotAndSignin(user, ...otherProps) {
 
 function* isUserAuthenticated() {
   try {
-    const authUser = yield getCurrentUser;
+    const authUser = yield getCurrentUser();
     if (!authUser) return;
     yield getUserSnapshotAndSignin(authUser);
   } catch (error) {
@@ -77,7 +77,7 @@ function* signup({ payload: { displayName, email, password } }) {
 
 function* signinAfterSignup({ payload: { user, displayName } }) {
   try {
-    yield getUserSnapshotAndSignin(user, displayName);
+    yield getUserSnapshotAndSignin({ ...user, displayName });
   } catch (error) {
     yield put(signinFailure(error));
   }
