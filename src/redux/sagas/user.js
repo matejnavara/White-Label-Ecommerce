@@ -18,11 +18,9 @@ import {
   getCurrentUser,
 } from "../../firebase/firebase.utils";
 
-function* getUserSnapshotAndSignin(user, ...additionalData) {
+function* getUserSnapshotAndSignin(user, additionalData) {
   try {
-    const userRef = yield call(createUserProfileDocument, user, {
-      ...additionalData,
-    });
+    const userRef = yield call(createUserProfileDocument, user, additionalData);
     const userSnapshot = yield userRef.get();
     yield put(signinSuccess({ id: userSnapshot.id, ...userSnapshot.data() }));
   } catch (error) {
@@ -66,7 +64,7 @@ function* signout() {
   }
 }
 
-function* signup({ payload: { displayName, email, password } }) {
+function* signup({ payload: { email, password, displayName } }) {
   try {
     const { user } = yield auth.createUserWithEmailAndPassword(email, password);
     yield put(signupSuccess({ user, displayName }));
@@ -76,11 +74,7 @@ function* signup({ payload: { displayName, email, password } }) {
 }
 
 function* signinAfterSignup({ payload: { user, displayName } }) {
-  try {
-    yield getUserSnapshotAndSignin({ ...user, displayName });
-  } catch (error) {
-    yield put(signinFailure(error));
-  }
+  yield getUserSnapshotAndSignin({ ...user, displayName });
 }
 
 // EVENTS
