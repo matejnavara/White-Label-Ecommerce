@@ -4,6 +4,7 @@ export const checkUserSession = () => ({
   type: UserActionTypes.CHECK_USER_SESSION,
 });
 
+// SIGNIN ACTIONS
 export const googleSigninRequest = () => ({
   type: UserActionTypes.GOOGLE_SIGNIN_REQUEST,
 });
@@ -23,6 +24,7 @@ export const signinFailure = (error) => ({
   payload: error,
 });
 
+// SIGNOUT ACTIONS
 export const signoutRequest = () => ({
   type: UserActionTypes.SIGNOUT_REQUEST,
 });
@@ -33,5 +35,21 @@ export const signoutSuccess = () => ({
 
 export const signoutFailure = (error) => ({
   type: UserActionTypes.SIGNOUT_FAILURE,
+  payload: error,
+});
+
+// SIGNUP ACTIONS
+export const signupRequest = (signupInfo) => ({
+  type: UserActionTypes.SIGNUP_REQUEST,
+  payload: signupInfo,
+});
+
+export const signupSuccess = (userAndDisplayName) => ({
+  type: UserActionTypes.SIGNUP_SUCCESS,
+  payload: userAndDisplayName,
+});
+
+export const signupFailure = (error) => ({
+  type: UserActionTypes.SIGNUP_FAILURE,
   payload: error,
 });
