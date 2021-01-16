@@ -1,6 +1,6 @@
 import { gql } from "apollo-boost";
 
-export const GET_CART_HIDDEN = gql`
+const GET_CART_HIDDEN = gql`
   {
     cartHidden @client
   }
@@ -21,7 +21,7 @@ export const resolvers = {
 
       cache.writeQuery({
         query: GET_CART_HIDDEN,
-        date: { cartHidden: !cartHidden },
+        data: { cartHidden: !cartHidden },
       });
 
       return !cartHidden;
