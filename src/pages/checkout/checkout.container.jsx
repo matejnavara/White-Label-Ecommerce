@@ -2,21 +2,21 @@ import React from "react";
 import { Query } from "react-apollo";
 import { gql } from "apollo-boost";
 
-import Checkout from "./checkout.component";
+import CheckoutPage from "./checkout.component";
 
-const GET_CART = gql`
+const GET_CART_ITEMS_AND_TOTAL = gql`
   {
     cartItems @client
     cartTotal @client
   }
 `;
 
-const CheckoutContainer = () => (
-  <Query query={GET_CART}>
+const CheckoutPageContainer = () => (
+  <Query query={GET_CART_ITEMS_AND_TOTAL}>
     {({ data: { cartItems, cartTotal } }) => (
-      <Checkout cartItems={cartItems} total={cartTotal} />
+      <CheckoutPage cartItems={cartItems} total={cartTotal} />
     )}
   </Query>
 );
 
-export default CheckoutContainer;
+export default CheckoutPageContainer;
