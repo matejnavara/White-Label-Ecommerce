@@ -1,8 +1,7 @@
-import React from 'react';
-import { Mutation, Query } from 'react-apollo';
-import { gql } from 'apollo-boost';
+import React from "react";
+import { gql, useMutation, useQuery } from "@apollo/client";
 
-import App from './App';
+import App from "./App";
 
 const SET_CURRENT_USER = gql`
   mutation SetCurrentUser($user: User!) {
@@ -16,21 +15,18 @@ const GET_CURRENT_USER = gql`
   }
 `;
 
-const AppContainer = () => (
-  <Query query={GET_CURRENT_USER}>
-    {({ data: { currentUser } }) => (
-      <Mutation mutation={SET_CURRENT_USER}>
-        {setCurrentUser => (
-          <App
-            currentUser={currentUser}
-            setCurrentUser={user => {
-              setCurrentUser({ variables: { user } });
-            }}
-          />
-        )}
-      </Mutation>
-    )}
-  </Query>
-);
+const AppContainer = () => {
+  const { data } = useQuery(GET_CURRENT_USER);
+
+  const [setCurrentUser] = useMutation(SET_CURRENT_USER);
+  return (
+    <App
+      currentUser={data.currentUser}
+      setCurrentUser={(user) => {
+        setCurrentUser({ variables: { user } });
+      }}
+    />
+  );
+};
 
 export default AppContainer;

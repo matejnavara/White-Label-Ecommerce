@@ -1,6 +1,5 @@
 import React from "react";
-import { compose, graphql } from "react-apollo";
-import { gql } from "apollo-boost";
+import { gql, useMutation } from "@apollo/client";
 
 import CheckoutItem from "./checkout-item.component";
 
@@ -22,22 +21,18 @@ const CLEAR_ITEM_FROM_CART = gql`
   }
 `;
 
-const CollectionItemContainer = ({
-  addItemToCart,
-  removeItemFromCart,
-  clearItemFromCart,
-  ...otherProps
-}) => (
-  <CheckoutItem
-    {...otherProps}
-    addItem={(item) => addItemToCart({ variables: { item } })}
-    removeItem={(item) => removeItemFromCart({ variables: { item } })}
-    clearItem={(item) => clearItemFromCart({ variables: { item } })}
-  />
-);
+const CollectionItemContainer = ({ ...otherProps }) => {
+  const [addItemToCart] = useMutation(ADD_ITEM_TO_CART);
+  const [removeItemFromCart] = useMutation(REMOVE_ITEM_FROM_CART);
+  const [clearItemFromCart] = useMutation(CLEAR_ITEM_FROM_CART);
+  return (
+    <CheckoutItem
+      {...otherProps}
+      addItem={(item) => addItemToCart({ variables: { item } })}
+      removeItem={(item) => removeItemFromCart({ variables: { item } })}
+      clearItem={(item) => clearItemFromCart({ variables: { item } })}
+    />
+  );
+};
 
-export default compose(
-  graphql(ADD_ITEM_TO_CART, { name: "addItemToCart" }),
-  graphql(REMOVE_ITEM_FROM_CART, { name: "removeItemFromCart" }),
-  graphql(CLEAR_ITEM_FROM_CART, { name: "clearItemFromCart" })
-)(CollectionItemContainer);
+export default CollectionItemContainer;
