@@ -14,6 +14,12 @@ const CheckoutContainer = styled.div`
   flex-direction: column;
   align-items: center;
   margin: 50px auto 0;
+
+  @media screen and (max-width: 800px) {
+    width: 100%;
+    justify-content: center;
+    margin: 0;
+  }
 `;
 
 const CheckoutHeader = styled.div`
@@ -26,10 +32,10 @@ const CheckoutHeader = styled.div`
 
 const HeaderBlock = styled.div`
   text-transform: capitalize;
-  width: 23%;
+  width: 22%;
 
   &:last-child {
-    width: 8%;
+    width: 12%;
   }
 `;
 
