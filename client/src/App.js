@@ -12,6 +12,8 @@ import ShopPage from "./pages/shop";
 import CheckoutPage from "./pages/checkout";
 import LoginPage from "./pages/login";
 
+import { GlobalStyle } from "./global.styles";
+
 const App = ({ currentUser, checkUserSession }) => {
   useEffect(() => {
     checkUserSession();
@@ -19,6 +21,7 @@ const App = ({ currentUser, checkUserSession }) => {
 
   return (
     <div>
+      <GlobalStyle />
       <Header />
       <Switch>
         <Route exact path="/" component={HomePage} />
