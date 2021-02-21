@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import {
   CartItemContainer,
@@ -18,6 +19,15 @@ const CartItem = ({ item: { name, price, quantity, imageUrl } }) => {
       </ItemDetailsContainer>
     </CartItemContainer>
   );
+};
+
+CartItem.propTypes = {
+  item: PropTypes.shape({
+    name: PropTypes.string,
+    price: PropTypes.number,
+    quantity: PropTypes.number,
+    imageUrl: PropTypes.string,
+  }).isRequired,
 };
 
 export default React.memo(CartItem);

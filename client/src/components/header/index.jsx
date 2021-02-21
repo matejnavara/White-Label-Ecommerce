@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
+import PropTypes from "prop-types";
 
 import { signoutRequest } from "../../redux/actions/user";
 import { selectCurrentUser } from "../../redux/selectors/user";
@@ -47,5 +48,11 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = (dispatch) => ({
   signout: () => dispatch(signoutRequest()),
 });
+
+Header.propTypes = {
+  currentUser: PropTypes.object.isRequired,
+  cartVisible: PropTypes.bool.isRequired,
+  signout: PropTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import { addItem, removeItem, clearItem } from "../../redux/actions/cart";
@@ -37,5 +38,12 @@ const mapDispatchToProps = (dispatch) => ({
   removeItem: (item) => dispatch(removeItem(item)),
   clearItem: (item) => dispatch(clearItem(item)),
 });
+
+CheckoutItem.propTypes = {
+  cartItem: PropTypes.object.isRequired,
+  addItem: PropTypes.func.isRequired,
+  removeItem: PropTypes.func.isRequired,
+  clearItem: PropTypes.func.isRequired,
+};
 
 export default connect(null, mapDispatchToProps)(CheckoutItem);

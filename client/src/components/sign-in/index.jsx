@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 import FormInput from "../form-input";
 import Button from "../custom-button";
@@ -66,5 +67,10 @@ const mapDispatchToProps = (dispatch) => ({
   emailSigninRequest: (email, password) =>
     dispatch(emailSigninRequest({ email, password })),
 });
+
+SignIn.propTypes = {
+  googleSigninRequest: PropTypes.func.isRequired,
+  emailSigninRequest: PropTypes.func.isRequired,
+};
 
 export default connect(null, mapDispatchToProps)(SignIn);

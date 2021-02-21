@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 
@@ -26,5 +27,17 @@ const Directory = ({ sections }) => {
 const mapStateToProps = createStructuredSelector({
   sections: selectSections,
 });
+
+Directory.propTypes = {
+  sections: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      title: PropTypes.string,
+      imageUrl: PropTypes.string,
+      linkUrl: PropTypes.string,
+      size: PropTypes.string,
+    })
+  ).isRequired,
+};
 
 export default connect(mapStateToProps)(Directory);

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 
@@ -26,6 +27,10 @@ const CollectionsOverview = ({ collections }) => {
 const mapStateToProps = createStructuredSelector({
   collections: selectCollectionsForPreview,
 });
+
+CollectionsOverview.propTypes = {
+  collections: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default WithCollectionsLoadingContainer(
   connect(mapStateToProps)(CollectionsOverview)

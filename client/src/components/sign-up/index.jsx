@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 import FormInput from "../form-input";
 import Button from "../custom-button";
@@ -85,5 +86,9 @@ const mapDispatchToProps = (dispatch) => ({
   signup: (displayName, email, password) =>
     dispatch(signupRequest({ displayName, email, password })),
 });
+
+SignUp.propTypes = {
+  signup: PropTypes.func.isRequired,
+};
 
 export default connect(null, mapDispatchToProps)(SignUp);
