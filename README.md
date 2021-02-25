@@ -2,6 +2,8 @@
 
 # White Label eCommerce
 
+![Page preview](./Github-Share-Img.jpg)
+
 ## Overview
 
 This project was created as part of the ZTM course, [Complete React Developer in 2021](https://academy.zerotomastery.io/p/complete-react-developer-redux-hooks-graphql-zero-to-mastery).
